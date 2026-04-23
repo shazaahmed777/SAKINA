@@ -1,7 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthRepository {
-    #go to supabase database
+    // go to supabase database
   final supabase = Supabase.instance.client;
 
 //send info if not correct error
