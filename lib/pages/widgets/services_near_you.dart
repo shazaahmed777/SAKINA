@@ -91,7 +91,7 @@ class ServicesNearYouContainer extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               itemCount: _services.length,
-              separatorBuilder: (_, _) =>
+              separatorBuilder: (context, index) =>
                   const SizedBox(width: 8), //change the space between the cards
               itemBuilder: (context, index) =>
                   _ServiceCard(service: _services[index]),

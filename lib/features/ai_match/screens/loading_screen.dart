@@ -73,7 +73,7 @@ class _LoadingScreenState extends State<LoadingScreen>
   Widget _buildSpinner() {
     return AnimatedBuilder(
       animation: _spinController,
-      builder: (_, _) => CustomPaint(
+      builder: (context, child) => CustomPaint(
         size: const Size(140, 140),
         painter: SpinnerPainter(_spinController.value * 2 * pi),
       ),
