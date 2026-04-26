@@ -1,17 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthRepository {
-  // go to supabase database
   final supabase = Supabase.instance.client;
 
-  //send info if not correct error
   Future<void> login({
     required String email,
     required String password,
     required String role,
   }) async {
     await supabase.auth.signInWithPassword(email: email, password: password);
-    // Save role in user metadata
     await supabase.auth.updateUser(UserAttributes(data: {'role': role}));
   }
 
@@ -27,7 +25,6 @@ class AuthRepository {
       data: {
         'full_name': fullName,
         'university': university,
-        //add gender
       },
     );
   }
@@ -37,6 +34,26 @@ class AuthRepository {
   }
 
   Future<void> signInWithGoogle() async {
-    await supabase.auth.signInWithOAuth(OAuthProvider.google);
-  }
+  await supabase.auth.signInWithOAuth(
+    OAuthProvider.google,
+    redirectTo: kIsWeb
+        ? 'http://localhost:59013'
+        : 'io.supabase.sakina://login-callback/',
+    authScreenLaunchMode: kIsWeb
+        ? LaunchMode.platformDefault
+        : LaunchMode.externalApplication,
+  );
+}
+
+Future<void> signInWithMicrosoft() async {
+  await supabase.auth.signInWithOAuth(
+    OAuthProvider.azure,
+    redirectTo: kIsWeb
+        ? 'http://localhost:59013'
+        : 'io.supabase.sakina://login-callback/',
+    authScreenLaunchMode: kIsWeb
+        ? LaunchMode.platformDefault
+        : LaunchMode.externalApplication,
+  );
+}
 }

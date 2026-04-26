@@ -33,7 +33,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final ImagePicker _imagePicker = ImagePicker();
   final TextEditingController _reportController = TextEditingController();
 
-  List<Message> _messages = [
+  final List<Message> _messages = [
     Message(
       text:
           "Hey! I saw your profile on Sakina. I'm also looking for a place in Maadi. Do you have a specific budget in mind?",
